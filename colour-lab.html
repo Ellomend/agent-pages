@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mix a colour and explore a live palette. A small interactive browser tool.">
+  <title>Colour Lab — Agent Pages</title>
+  <style>
+    :root{color-scheme:light;--ink:#182f35;--muted:#576970;--line:#dce4dd;--accent:#257b75}*{box-sizing:border-box}body{margin:0;background:#f6f7f1;color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button,a,input:focus-visible{outline-offset:4px}button:focus-visible,a:focus-visible{outline:3px solid #11686f}button{cursor:pointer}a{color:inherit}header,main,footer{max-width:1080px;margin:auto;padding-left:28px;padding-right:28px}header{height:95px;display:flex;align-items:center;justify-content:space-between;gap:16px}.back{text-decoration:none;font-size:14px;font-weight:600}.badge,.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700}.badge{color:var(--muted)}.intro{padding:35px 0 36px}.eyebrow{color:#356f64}h1{font-size:clamp(42px,7vw,66px);line-height:1.08;letter-spacing:-.055em;font-weight:650;margin:14px 0 16px}.intro p{color:var(--muted);font-size:18px;margin:0;max-width:650px}.lab{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px}h2{font-size:16px;letter-spacing:-.02em;margin:0 0 24px}.control{margin:0 0 26px}.label-row{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600;margin-bottom:10px}.label-row output{font-variant-numeric:tabular-nums;color:var(--muted)}input[type=range]{width:100%;height:26px;accent-color:#26716d;cursor:pointer;margin:0}.presets{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.preset{background:#f4f6f1;border:1px solid var(--line);border-radius:100px;padding:8px 14px;color:var(--ink);font-size:13px;min-height:40px}.preset:hover{border-color:#689889}.readout{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid var(--line);margin-top:28px;padding-top:24px}.hex{font:600 23px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:-.04em}.copy{background:#183b3e;color:#fff;border:0;border-radius:11px;font-size:13px;padding:11px 16px;min-height:44px}.status{min-height:22px;font-size:12px;color:var(--muted);margin:12px 0 0}.preview{padding:0;overflow:hidden}.stage{padding:42px;background:#e4eddf;min-height:310px;display:grid;place-items:center}.sample-card{background:#fff;border-radius:18px;padding:28px;max-width:320px;box-shadow:0 16px 40px #162e3610}.sample-card .tiny{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#63746c}.sample-card h3{font-size:26px;line-height:1.2;letter-spacing:-.04em;margin:13px 0}.sample-card p{font-size:14px;color:#576970;margin:0 0 22px}.sample-action{display:inline-block;background:var(--accent);padding:10px 18px;border-radius:10px;font-size:13px;font-weight:650}.palette{padding:25px 28px}.palette-top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:17px}.palette-top h2{margin:0}.ratio{font-size:12px;color:var(--muted)}.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.swatch{height:65px;border-radius:11px}.swatch-label{text-align:center;font:11px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;margin-top:7px;color:var(--muted)}.caption{font-size:12px;color:var(--muted);margin:18px 0 0}.footnote{color:var(--muted);font-size:13px;max-width:650px;margin:28px 0 60px}footer{border-top:1px solid var(--line);padding-top:22px;padding-bottom:30px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}
+    @media(max-width:720px){header{height:80px}.intro{padding:25px 0 30px}.lab{grid-template-columns:1fr}.panel{padding:25px}.preview{padding:0}.stage{padding:30px;min-height:280px}.palette{padding:25px}.swatches{gap:8px}.palette-top{align-items:flex-start;flex-direction:column;gap:6px}footer{flex-direction:column;gap:5px}}
+  </style>
+</head>
+<body>
+  <header><a class="back" href="./">← Agent Pages</a><span class="badge">Sample 01 · Colour Lab</span></header>
+  <main>
+    <section class="intro"><div class="eyebrow">An idea you can play with</div><h1>Find your colour.</h1><p>Move the sliders. Try a mood. Watch a little interface change with you.</p></section>
+    <div class="lab">
+      <section class="panel" aria-labelledby="mix-title"><h2 id="mix-title">Make a mix</h2>
+        <div class="control"><div class="label-row"><label for="hue">Hue</label><output id="hue-value" for="hue">176°</output></div><input type="range" id="hue" min="0" max="360" value="176"></div>
+        <div class="control"><div class="label-row"><label for="saturation">Saturation</label><output id="saturation-value" for="saturation">54%</output></div><input type="range" id="saturation" min="0" max="100" value="54"></div>
+        <div class="control"><div class="label-row"><label for="lightness">Lightness</label><output id="lightness-value" for="lightness">31%</output></div><input type="range" id="lightness" min="0" max="100" value="31"></div>
+        <div class="presets" aria-label="Colour presets"><button class="preset" data-h="176" data-s="54" data-l="31">Ocean</button><button class="preset" data-h="130" data-s="35" data-l="34">Forest</button><button class="preset" data-h="18" data-s="78" data-l="58">Sunset</button><button class="preset" data-h="265" data-s="52" data-l="58">Orchid</button></div>
+        <div class="readout"><output class="hex" id="hex">#247A75</output><button class="copy" id="copy">Copy HEX</button></div><p class="status" id="status" role="status"></p>
+      </section>
+      <section class="panel preview" aria-labelledby="preview-title"><div class="stage" id="stage"><div class="sample-card"><span class="tiny" id="preview-title">Live preview</span><h3>Make room<br>for a little idea.</h3><p>A colour can change the whole feeling of a page. This one is yours to explore.</p><span class="sample-action" id="sample-action">A little possibility ↗</span></div></div><div class="palette"><div class="palette-top"><h2>Your palette</h2><span class="ratio" id="contrast"></span></div><div class="swatches" id="swatches"></div><p class="caption">Accent, soft tint, deep shade and a complementary colour.</p></div></section>
+    </div>
+    <p class="footnote">Just a small colour experiment. Each slider changes the page immediately; the palette and preview follow along.</p>
+    <noscript><p>This interactive sample needs JavaScript enabled in your browser.</p></noscript>
+  </main>
+  <footer><span><a href="./">Back to the collection</a></span><span>Colour Lab · Version 1</span></footer>
+  <script>
+    (() => {
+      const ids = ['hue', 'saturation', 'lightness'];
+      const controls = ids.map(id => document.getElementById(id));
+      const hexOutput = document.getElementById('hex');
+      const status = document.getElementById('status');
+      function rgb(h, s, l) {
+        s /= 100; l /= 100;
+        const a = s * Math.min(l, 1 - l);
+        return [0, 8, 4].map(n => {
+          const k = (n + h / 30) % 12;
+          return Math.round(255 * (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))));
+        });
+      }
+      const hex = values => '#' + values.map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase();
+      function luminance(values) {
+        const linear = values.map(v => { v /= 255; return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; });
+        return .2126 * linear[0] + .7152 * linear[1] + .0722 * linear[2];
+      }
+      function render() {
+        const [h, s, l] = controls.map(el => Number(el.value));
+        ids.forEach((id, i) => { document.getElementById(id + '-value').textContent = controls[i].value + (i === 0 ? '°' : '%'); });
+        const colour = rgb(h, s, l), accent = hex(colour);
+        hexOutput.textContent = accent;
+        document.documentElement.style.setProperty('--accent', accent);
+        document.getElementById('stage').style.backgroundColor = `hsl(${h} ${Math.round(s * .45)}% 91%)`;
+        const lum = luminance(colour), white = 1.05 / (lum + .05), black = (lum + .05) / .05;
+        const useWhite = white >= black;
+        document.getElementById('sample-action').style.color = useWhite ? '#fff' : '#000';
+        document.getElementById('contrast').textContent = `Button text contrast: ${Math.max(white, black).toFixed(1)}:1`;
+        const colours = [accent, hex(rgb(h, Math.round(s * .45), 88)), hex(rgb(h, s, 18)), hex(rgb((h + 180) % 360, s, l))];
+        const swatches = document.getElementById('swatches');
+        swatches.replaceChildren(...colours.map(colour => {
+          const wrap = document.createElement('div');
+          const swatch = document.createElement('div'); swatch.className = 'swatch'; swatch.style.backgroundColor = colour;
+          const label = document.createElement('div'); label.className = 'swatch-label'; label.textContent = colour;
+          wrap.append(swatch, label); return wrap;
+        }));
+        status.textContent = '';
+      }
+      controls.forEach(el => el.addEventListener('input', render));
+      document.querySelectorAll('.preset').forEach(button => button.addEventListener('click', () => {
+        [button.dataset.h, button.dataset.s, button.dataset.l].forEach((v, i) => { controls[i].value = v; }); render();
+      }));
+      document.getElementById('copy').addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(hexOutput.textContent); status.textContent = `Copied ${hexOutput.textContent}`; }
+        catch { status.textContent = `Copy this colour: ${hexOutput.textContent}`; }
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>
